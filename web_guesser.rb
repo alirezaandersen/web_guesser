@@ -1,5 +1,10 @@
 require 'sinatra'
+require 'sinatra/reloader'
+
+
 
 get '/' do
-  'Hello, World!'
+  x = rand(4)
+  "The SECRET NUMBER is #{x}"
+
 end

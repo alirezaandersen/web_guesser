@@ -10,6 +10,7 @@ get '/' do
   num = params["guess"].to_i
   message = check_guess(num)
   background_color = background_color(num)
+  cheat = params["cheat"]
   erb :index, :locals => {:number => SECRETNUMBER, :message => message, :background_color => background_color}
 end
 
@@ -29,6 +30,7 @@ def check_guess(num)
 end
 
 
+
 def background_color(num)
   if num > SECRETNUMBER + 5
     'red'
@@ -43,21 +45,8 @@ def background_color(num)
     "purple"
   end
 end
-# def way_to_high(num)
-#   if num > SECRETNUMBER + 5
-#     'Your guess is WAY TO HIGH!'
-#   elsif num > SECRETNUMBER
-#     'guess is to high'
-#   end
-# end
-#
-# def way_to_low(num)
-#   if num < SECRETNUMBER - 5
-#     'Your guess is WAY TO LOW!'
-#   elsif num > SECRETNUMBER
-#     'guess is to low'
-#   end
-# end
+
+
 
 
 # erb :index, :locals => {:number => number}

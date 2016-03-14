@@ -2,13 +2,10 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'pry'
 
+
 NUM_OF_GUESSES = 10
-
 @@counter = NUM_OF_GUESSES
-
-
 @@secretnumber = rand(100)
-
 
 get '/' do
   num = params["guess"].to_i
@@ -34,8 +31,7 @@ def check_guess(num)
   elsif num < @@secretnumber
       "guess is to low.\n\nYou have #{@@counter} guesses left"
   else
-    num == @@secretnumber
-    "You got it correctly \n The SECRET NUMBER is #{@@secretnumber}\n you had #{@@counter} guesses left"
+    "<span style=\"color: white;\">You got it correctly \n The SECRET NUMBER is #{@@secretnumber}\n you had #{@@counter} guesses left</span>"
   end
 end
 
@@ -45,7 +41,6 @@ def cheating
   <br>
   The SECRET NUMBER is #{@@secretnumber}"
 end
-
 
 def background_color(num)
   if num > @@secretnumber + 5
@@ -57,12 +52,12 @@ def background_color(num)
   elsif num < @@secretnumber
       'yellow'
   else
-    num == @@secretnumber
-    "purple"
+    reset_game if num == @@secretnumber
+    'https://m.popkey.co/4acd9d/9yayo.gif'
   end
 end
 
-
-
-
-# erb :index, :locals => {:number => number}
+def reset_game
+  @@counter = NUM_OF_GUESSES
+  @@secretnumber = rand(100)
+end
